@@ -7,7 +7,7 @@ export default function Hero() {
                     calyra
                 </h1>
             </div>
-            <h4 className="text-lg md:text-3xl mb-8">Smarter Conversations. Smarter Business.</h4>
+            <h4 className="text-lg md:text-3xl mb-8">Smarter Interactions. Stronger Brands.</h4>
             <a href="#chat" className="bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
                 Talk to Cal
             </a>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 export default function ChatWidget() {
+    const apiUrl = import.meta.env.VITE_CHAT_API_URL;
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
@@ -17,8 +18,17 @@ export default function ChatWidget() {
 
         setMessages(prev => [...prev, { sender: 'user', text: input }]);
 
+        if (!apiUrl) {
+            setMessages(prev => [...prev, {
+                sender: 'bot',
+                text: 'Chat is not connected yet. Please try again later.'
+            }]);
+            setInput('');
+            return;
+        }
+
         try {
-            const response = await fetch('http://localhost:8080/api/v1/chat', {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ botId: 'calyra', message: input }),
